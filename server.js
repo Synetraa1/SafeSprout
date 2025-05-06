@@ -1,31 +1,30 @@
-// server/server.js
 const express = require('express');
 const cors = require('cors');
-const connectDB = require('./utils/db'); // Your MongoDB connection file
-const plantRoutes = require('./routes/plants');
+const dotenv = require('dotenv');
 
-// Connect to MongoDB
-connectDB();
+// Load environment variables
+require('dotenv').config();
 
+// Create Express app
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors()); // Enable CORS for all routes
+app.use(cors());
 app.use(express.json());
 
-// Routes
+// Import routes
+const plantRoutes = require('./server/routes/plants');
+
+// Use routes
 app.use('/api/plants', plantRoutes);
 
-// Error handler middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ 
-    message: 'Something went wrong!',
-    error: process.env.NODE_ENV === 'development' ? err.message : undefined
-  });
+// Basic route
+app.get('/', (req, res) => {
+  res.send('SafeSprout API is running');
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-module.exports = app;
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

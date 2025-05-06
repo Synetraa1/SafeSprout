@@ -1,75 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import WateringLegend from './legends/WateringLegend';
 
-const API_URL = '/api/plants';
-
-export const getAllPlants = async () => {
-  try {
-    const response = await axios.get(API_URL);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching plants:', error);
-    throw error;
-  }
+// Helper function to capitalize strings
+const capitalize = (str) => {
+  if (!str) return '';
+  
+  // For multi-word strings, capitalize each word
+  return str.split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
 };
 
-export const getPlantBySlug = async (slug) => {
-  try {
-    const response = await axios.get(`${API_URL}/${slug}`);
-    return response.data;
-  } catch (error) {
-    console.error(`Error fetching plant ${slug}:`, error);
-    throw error;
-  }
-};
-
-export const searchPlants = async (criteria) => {
-  try {
-    const params = new URLSearchParams();
-    
-    if (criteria.light) params.append('light', criteria.light);
-    if (criteria.water) params.append('water', criteria.water);
-    if (criteria.toxic !== undefined) params.append('toxic', criteria.toxic);
-    if (criteria.tags) params.append('tags', criteria.tags.join(','));
-    
-    const response = await axios.get(`${API_URL}/search?${params}`);
-    return response.data;
-  } catch (error) {
-    console.error('Error searching plants:', error);
-    throw error;
-  }
-};
-
-export const createPlant = async (plantData) => {
-  try {
-    const response = await axios.post(API_URL, plantData);
-    return response.data;
-  } catch (error) {
-    console.error('Error creating plant:', error);
-    throw error;
-  }
-};
-
-export const updatePlant = async (slug, plantData) => {
-  try {
-    const response = await axios.put(`${API_URL}/${slug}`, plantData);
-    return response.data;
-  } catch (error) {
-    console.error(`Error updating plant ${slug}:`, error);
-    throw error;
-  }
-};
-
-export const deletePlant = async (slug) => {
-  try {
-    const response = await axios.delete(`${API_URL}/${slug}`);
-    return response.data;
-  } catch (error) {
-    console.error(`Error deleting plant ${slug}:`, error);
-    throw error;
-  }
+// Helper function to capitalize each string in an array
+const capitalizeArray = (arr) => {
+  if (!arr || !Array.isArray(arr)) return [];
+  return arr.map(item => capitalize(item));
 };
 
 function App() {
@@ -77,20 +24,54 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [allPlants, setAllPlants] = useState([]);
 
-  const handleSearch = async () => {
+  // Fetch all plants on component mount
+  useEffect(() => {
+    const fetchAllPlants = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/api/plants/all');
+        setAllPlants(res.data.data || []);
+      } catch (error) {
+        console.error('Error fetching plants:', error);
+        setError('Error connecting to the API. Please check if the server is running.');
+      }
+    };
+
+    fetchAllPlants();
+  }, []);
+
+  const searchPlants = async () => {
     setLoading(true);
     setError('');
     try {
-      const results = await searchPlants({ 
-        query: searchTerm 
-      });
-      setSearchResults(results || []);
+      // Use the search endpoint from our local database API
+      const res = await axios.get(`http://localhost:5000/api/plants/search?query=${searchTerm}`);
+      setSearchResults(res.data.data || []);
     } catch (error) {
       console.error('Error searching plants:', error);
       setError('Error connecting to the API. Please check if the server is running.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Add a function to view all plants when no search term is entered
+  const handleSearch = () => {
+    if (!searchTerm.trim()) {
+      // If search term is empty, show all plants
+      setSearchResults(allPlants);
+      return;
+    }
+    
+    // Otherwise, perform the search
+    searchPlants();
+  };
+
+  // Handle Enter key in search input
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
     }
   };
 
@@ -107,6 +88,7 @@ function App() {
           placeholder="Search for plants..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyPress={handleKeyPress}
         />
         <button onClick={handleSearch} disabled={loading}>
           {loading ? 'Searching...' : 'Search'}
@@ -118,69 +100,81 @@ function App() {
       {error && <p className="error">{error}</p>}
       
       <div className="results">
-      {searchResults.length > 0 ? (
-  searchResults.map(plant => (
-    <div key={plant._id} className="plant-card">
-      <h3>
-      {plant.commonNames && plant.commonNames.length > 0 
-        ? plant.commonNames[0].charAt(0).toUpperCase() + plant.commonNames[0].slice(1) 
-        : 'Unknown Plant'}
-      </h3>
-      <p><em>{plant.scientificName || 'Unknown Scientific Name'}</em></p>
-      
-      {/* Pet Toxicity Information */}
-      <div className="toxicity-info">
-        <h4>Pet Safety Information</h4>
-        {plant.toxicity && (
-          <>
-            <div className="pet-toxicity">
-              {plant.toxicity.toxic ? (
-                <div className="toxic-warning">
-                  <p>⚠️ <strong>Toxic to {plant.toxicity.affected.join(', ')}</strong> - Severity: {plant.toxicity.severity}</p>
-                  <p><strong>Symptoms:</strong> {plant.toxicity.symptoms.join(', ')}</p>
-                  <p><strong>Toxic parts:</strong> {plant.toxicity.toxic_parts.join(', ')}</p>
-                </div>
-              ) : (
-                <p className="safe">✅ Likely safe for pets</p>
+        {searchResults.length > 0 ? (
+          searchResults.map(plant => (
+            <div key={plant.id} className="plant-card">
+              <h3>{capitalize(plant.common_name)}</h3>
+              <p><em>{plant.scientific_name && plant.scientific_name.join(', ')}</em></p>
+              {plant.default_image && plant.default_image.thumbnail && (
+                <img 
+                  src={plant.default_image.thumbnail} 
+                  alt={capitalize(plant.common_name)} 
+                  style={{ maxWidth: '200px' }} 
+                />
               )}
+              
+              {/* Pet Toxicity Information */}
+              <div className="toxicity-info">
+                <h4>Pet Safety Information</h4>
+                <div className="cat-toxicity">
+                  {plant.toxicity && plant.toxicity.isToxicToCats !== null ? (
+                    plant.toxicity.isToxicToCats ? (
+                      <div className="toxic-warning">
+                        <p>⚠️ <strong>Toxic to Cats</strong> - Severity: {plant.toxicity.catToxicity.severity}</p>
+                        <p><strong>Symptoms:</strong> {plant.toxicity.catToxicity.symptoms.join(', ')}</p>
+                        <p><strong>Note:</strong> {plant.toxicity.catToxicity.notes}</p>
+                      </div>
+                    ) : (
+                      <p className="safe">✅ Likely safe for cats</p>
+                    )
+                  ) : (
+                    <p className="unknown">ℹ️ Toxicity to cats unknown</p>
+                  )}
+                </div>
+                
+                <div className="dog-toxicity">
+                  {plant.toxicity && plant.toxicity.isToxicToDogs !== null ? (
+                    plant.toxicity.isToxicToDogs ? (
+                      <div className="toxic-warning">
+                        <p>⚠️ <strong>Toxic to Dogs</strong> - Severity: {plant.toxicity.dogToxicity.severity}</p>
+                        <p><strong>Symptoms:</strong> {plant.toxicity.dogToxicity.symptoms.join(', ')}</p>
+                        <p><strong>Note:</strong> {plant.toxicity.dogToxicity.notes}</p>
+                      </div>
+                    ) : (
+                      <p className="safe">✅ Likely safe for dogs</p>
+                    )
+                  ) : (
+                    <p className="unknown">ℹ️ Toxicity to dogs unknown</p>
+                  )}
+                </div>
+                
+                {plant.toxicity && plant.toxicity.notes && !plant.toxicity.isToxicToCats && !plant.toxicity.isToxicToDogs && (
+                  <p className="toxicity-notes"><strong>Notes:</strong> {plant.toxicity.notes}</p>
+                )}
+                
+                <p className="toxicity-disclaimer">
+                  <small>
+                    <em>Note: This toxicity information is provided as a general guide. 
+                    When in doubt, consult with a veterinarian before bringing any plant into a home with pets.</em>
+                  </small>
+                </p>
+              </div>
+              
+              {/* Basic Plant Care Information */}
+              <div className="care-info">
+                <h4>Basic Care</h4>
+                {plant.watering && (
+                  <p><strong>Watering:</strong> {plant.watering}</p>
+                )}
+                {plant.sunlight && plant.sunlight.length > 0 && (
+                  <p><strong>Sunlight:</strong> {capitalizeArray(plant.sunlight).join(', ')}</p>
+                )}
+              </div>
             </div>
-          </>
+          ))
+        ) : (
+          <p>No results to display. Try searching for a plant.</p>
         )}
-        
-        <p className="toxicity-disclaimer">
-          <small>
-            <em>Note: This toxicity information is provided as a general guide. 
-            When in doubt, consult with a veterinarian before bringing any plant into a home with pets.</em>
-          </small>
-        </p>
-      </div>
-      
-      {/* Basic Plant Care Information */}
-      <div className="care-info">
-        <h4>Basic Care</h4>
-        {plant.careRequirements && (
-          <>
-            {plant.careRequirements.water && (
-              <p><strong>Watering:</strong> {plant.careRequirements.water.frequency}</p>
-            )}
-            {plant.careRequirements.light && (
-              <p><strong>Sunlight:</strong> {plant.careRequirements.light.level}</p>
-            )}
-          </>
-        )}
-      </div>
-      
-      {/* Tags */}
-      <div className="tags">
-        {plant.tags && plant.tags.map(tag => (
-          <span key={tag} className="tag">{tag}</span>
-        ))}
-      </div>
-    </div>
-  ))
-) : (
-  <p>No results to display. Try searching for a plant.</p>
-)}
       </div>
     </div>
   );
