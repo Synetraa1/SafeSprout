@@ -5,7 +5,8 @@ import WateringLegend from './legends/WateringLegend';
 
 // Helper function to capitalize strings
 const capitalize = (str) => {
-  if (!str) return '';
+  // Check if str is a string and not null/undefined
+  if (!str || typeof str !== 'string') return '';
   
   // For multi-word strings, capitalize each word
   return str.split(' ')
@@ -13,10 +14,16 @@ const capitalize = (str) => {
     .join(' ');
 };
 
-// Helper function to capitalize each string in an array
+// Improved helper function to capitalize each string in an array with better type checking
 const capitalizeArray = (arr) => {
   if (!arr || !Array.isArray(arr)) return [];
-  return arr.map(item => capitalize(item));
+  return arr.map(item => {
+    // Make sure each item is a string before trying to capitalize
+    if (typeof item === 'string') {
+      return capitalize(item);
+    }
+    return item;
+  });
 };
 
 function App() {

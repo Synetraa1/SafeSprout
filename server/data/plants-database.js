@@ -34,7 +34,7 @@ const plantsDatabase = [
     common_name: "fiddle leaf fig",
     scientific_name: ["Ficus lyrata"],
     default_image: {
-      thumbnail: "https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_fiddle-leaf-fig_variant_small_grant_terracotta_720x.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Ficus_lyrata.jpg/640px-Ficus_lyrata.jpg"
     },
     sunlight: ["full sun", "part sun"],
     watering: "Average",
@@ -82,7 +82,7 @@ const plantsDatabase = [
     common_name: "zz plant",
     scientific_name: ["Zamioculcas zamiifolia"],
     default_image: {
-      thumbnail: "https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_ZZ-plant_variant_medium_grant_cream_720x.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Zamioculcas_zamiifolia_1.jpg/640px-Zamioculcas_zamiifolia_1.jpg"
     },
     sunlight: ["low light", "part sun"],
     watering: "Minimum",
@@ -106,7 +106,7 @@ const plantsDatabase = [
     common_name: "pothos",
     scientific_name: ["Epipremnum aureum"],
     default_image: {
-      thumbnail: "https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_pothos_variant_small_hyde_black_720x.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Epipremnum_aureum_in_West_Bengal%2C_India.jpg/640px-Epipremnum_aureum_in_West_Bengal%2C_India.jpg"
     },
     sunlight: ["low light", "part sun"],
     watering: "Average",
@@ -130,7 +130,7 @@ const plantsDatabase = [
     common_name: "jade plant",
     scientific_name: ["Crassula ovata"],
     default_image: {
-      thumbnail: "https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_jade_variant_small_hyde_black_720x.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Crassula_ovata_fleurs_FR_2013.jpg/640px-Crassula_ovata_fleurs_FR_2013.jpg"
     },
     sunlight: ["full sun"],
     watering: "Minimum",
@@ -151,10 +151,10 @@ const plantsDatabase = [
   },
   {
     id: 7,
-    common_name: "aloe vera",
+    common_name: "Aloe",
     scientific_name: ["Aloe vera"],
     default_image: {
-      thumbnail: "https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_aloe-vera_variant_small_grow-pot_none_720x.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/S%C3%A1bila_junto_a_sus_hijos..jpg/640px-S%C3%A1bila_junto_a_sus_hijos..jpg"
     },
     sunlight: ["full sun", "part sun"],
     watering: "Minimum",
@@ -216,7 +216,7 @@ const plantsDatabase = [
     common_name: "spider plant",
     scientific_name: ["Chlorophytum comosum"],
     default_image: {
-      thumbnail: "https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_spider-plant_variant_small_grow-pot_none_720x.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Chlorophytum_comosum_%28cropped%29.jpg/640px-Chlorophytum_comosum_%28cropped%29.jpg"
     },
     sunlight: ["part sun", "part shade"],
     watering: "Average",
@@ -227,10 +227,10 @@ const plantsDatabase = [
   },
   {
     id: 11,
-    common_name: "calathea",
+    common_name: ["Calathea", "Zebra Plant"],
     scientific_name: ["Calathea", "Goeppertia"],
     default_image: {
-      thumbnail: "https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_calathea-medallion_variant_small_grant_cream_720x.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Zebra_Plant_%28Calathea_Zebrina%29.jpg/640px-Zebra_Plant_%28Calathea_Zebrina%29.jpg"
     },
     sunlight: ["part shade", "low light"],
     watering: "Average",
@@ -244,7 +244,7 @@ const plantsDatabase = [
     common_name: "prayer plant",
     scientific_name: ["Maranta leuconeura"],
     default_image: {
-      thumbnail: "https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_maranta_variant_small_grant_terracotta_720x.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Maranta_leuconeura3.jpg/640px-Maranta_leuconeura3.jpg"
     },
     sunlight: ["part shade", "low light"],
     watering: "Average",
@@ -258,7 +258,7 @@ const plantsDatabase = [
     common_name: "money tree",
     scientific_name: ["Pachira aquatica"],
     default_image: {
-      thumbnail: "https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_money-tree_variant_small_hyde_cream_720x.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Pachira_aquatica_19zz.jpg/640px-Pachira_aquatica_19zz.jpg"
     },
     sunlight: ["part sun", "part shade"],
     watering: "Average",
@@ -272,7 +272,7 @@ const plantsDatabase = [
     common_name: "string of pearls",
     scientific_name: ["Curio rowleyanus", "Senecio rowleyanus"],
     default_image: {
-      thumbnail: "https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_string-of-pearls_variant_small_ezra_blush_720x.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/String_of_Beads_%28Senecio_rowleyanus%29_%283424158397%29.jpg/640px-String_of_Beads_%28Senecio_rowleyanus%29_%283424158397%29.jpg"
     },
     sunlight: ["full sun", "part sun"],
     watering: "Minimum",
@@ -296,7 +296,7 @@ const plantsDatabase = [
     common_name: "rubber plant",
     scientific_name: ["Ficus elastica"],
     default_image: {
-      thumbnail: "https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_rubber-tree_variant_medium_grant_cream_720x.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Rubber_Plant_%28Ficus_elastica_%27Robusta%27%29.jpg/640px-Rubber_Plant_%28Ficus_elastica_%27Robusta%27%29.jpg"
     },
     sunlight: ["part sun", "part shade"],
     watering: "Average",
@@ -335,7 +335,7 @@ const plantsDatabase = [
     common_name: "tulip",
     scientific_name: ["Tulipa"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Tulip_-_floriade_canberra.jpg/640px-Tulip_-_floriade_canberra.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Tulipa_suaveolens_floriade_to_Canberra.jpg/640px-Tulipa_suaveolens_floriade_to_Canberra.jpg"
     },
     sunlight: ["full sun", "part sun"],
     watering: "Average",
@@ -359,7 +359,7 @@ const plantsDatabase = [
     common_name: "daffodil",
     scientific_name: ["Narcissus"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Narcissus_%27Dutch_Master%27_Flower_2400px.jpg/640px-Narcissus_%27Dutch_Master%27_Flower_2400px.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Narcissus_flowers.jpg/640px-Narcissus_flowers.jpg"
     },
     sunlight: ["full sun", "part sun"],
     watering: "Average",
@@ -383,7 +383,7 @@ const plantsDatabase = [
     common_name: "lily",
     scientific_name: ["Lilium"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Red_Mountain_Lily.jpg/640px-Red_Mountain_Lily.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Stargazer_Lillies_Lillium_orientale_%27Stargazer%27_Flower_2000px.jpg/640px-Stargazer_Lillies_Lillium_orientale_%27Stargazer%27_Flower_2000px.jpg"
     },
     sunlight: ["full sun", "part sun"],
     watering: "Average",
@@ -402,7 +402,7 @@ const plantsDatabase = [
     common_name: "philodendron",
     scientific_name: ["Philodendron"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Heartleaf_Philodendron_South_Garden_Auckland_Domain.jpg/640px-Heartleaf_Philodendron_South_Garden_Auckland_Domain.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Philodendron_lacerum2.jpg/640px-Philodendron_lacerum2.jpg"
     },
     sunlight: ["part shade", "part sun", "low light"],
     watering: "Average",
@@ -426,7 +426,7 @@ const plantsDatabase = [
     common_name: "african violet",
     scientific_name: ["Saintpaulia"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Saintpaulia_African_Violet.jpg/640px-Saintpaulia_African_Violet.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Saintpaulia_ionantha.jpg/640px-Saintpaulia_ionantha.jpg"
     },
     sunlight: ["part shade", "low light"],
     watering: "Average",
@@ -440,7 +440,7 @@ const plantsDatabase = [
     common_name: "orchid",
     scientific_name: ["Orchidaceae"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Cypripedium_calceolus_2.jpg/640px-Cypripedium_calceolus_2.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Orchidaceae_flowers_-_magenta_colour.jpg/640px-Orchidaceae_flowers_-_magenta_colour.jpg"
     },
     sunlight: ["part shade", "part sun"],
     watering: "Average",
@@ -454,7 +454,7 @@ const plantsDatabase = [
     common_name: "basil",
     scientific_name: ["Ocimum basilicum"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Basil-Basilico-Ocimum_basilicum-albahaca.jpg/640px-Basil-Basilico-Ocimum_basilicum-albahaca.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Ocimum_basilicum_CG_NBG_LR.jpg/640px-Ocimum_basilicum_CG_NBG_LR.jpg"
     },
     sunlight: ["full sun", "part sun"],
     watering: "Average",
@@ -468,7 +468,7 @@ const plantsDatabase = [
     common_name: "mint",
     scientific_name: ["Mentha"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Mint_leaves_25.jpg/640px-Mint_leaves_25.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Mentha_sp.001_-_A_Pobra_do_Carami%C3%B1al.JPG/640px-Mentha_sp.001_-_A_Pobra_do_Carami%C3%B1al.JPG"
     },
     sunlight: ["part sun", "part shade"],
     watering: "Average",
@@ -483,7 +483,7 @@ const plantsDatabase = [
     common_name: "lavender",
     scientific_name: ["Lavandula"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Lavender_field.jpg/640px-Lavender_field.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Single_lavender_flower02.jpg/640px-Single_lavender_flower02.jpg"
     },
     sunlight: ["full sun"],
     watering: "Minimum",
@@ -498,7 +498,7 @@ const plantsDatabase = [
     common_name: "poinsettia",
     scientific_name: ["Euphorbia pulcherrima"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Poinsettia_2.jpg/640px-Poinsettia_2.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Euphorbia_pulcherrima_in_Bangladesh_03.jpg/640px-Euphorbia_pulcherrima_in_Bangladesh_03.jpg"
     },
     sunlight: ["part sun", "part shade"],
     watering: "Average",
@@ -522,7 +522,7 @@ const plantsDatabase = [
     common_name: "bamboo palm",
     scientific_name: ["Chamaedorea seifrizii"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Parlour_palm.jpg/640px-Parlour_palm.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Starr-110209-0679-Rhapis_excelsa-habit-Resort_Management_Group_Nursery_Kihei-Maui_%2824956198712%29.jpg/640px-Starr-110209-0679-Rhapis_excelsa-habit-Resort_Management_Group_Nursery_Kihei-Maui_%2824956198712%29.jpg"
     },
     sunlight: ["part shade", "low light"],
     watering: "Average",
@@ -536,7 +536,7 @@ const plantsDatabase = [
     common_name: "majesty palm",
     scientific_name: ["Ravenea rivularis"],
     default_image: {
-      thumbnail: "https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_majesty-palm_variant_small_grant_terracotta_720x.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Ravenea_rivularis_as_a_houseplant.jpg/640px-Ravenea_rivularis_as_a_houseplant.jpg"
     },
     sunlight: ["part sun", "part shade"],
     watering: "Average",
@@ -550,7 +550,7 @@ const plantsDatabase = [
     common_name: "zebra plant",
     scientific_name: ["Aphelandra squarrosa"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Aphelandra_squarrosa_%28Acanthaceae%29_plant.jpg/640px-Aphelandra_squarrosa_%28Acanthaceae%29_plant.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Zebra_Plant_%28Aphelandra_squarrosa%29_2.jpg/640px-Zebra_Plant_%28Aphelandra_squarrosa%29_2.jpg"
     },
     sunlight: ["part shade", "low light"],
     watering: "Average",
@@ -564,7 +564,7 @@ const plantsDatabase = [
     common_name: "succulents",
     scientific_name: ["Various"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Echeveria_pulidonis.jpg/640px-Echeveria_pulidonis.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Succulent_Plant%2C_Kew_Gardens_-_geograph.org.uk_-_3194484.jpg/640px-Succulent_Plant%2C_Kew_Gardens_-_geograph.org.uk_-_3194484.jpg"
     },
     sunlight: ["full sun", "part sun"],
     watering: "Minimum",
@@ -588,7 +588,7 @@ const plantsDatabase = [
     common_name: "bird of paradise",
     scientific_name: ["Strelitzia reginae"],
     default_image: {
-      thumbnail: "https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_bird-of-paradise_variant_medium_grant_cream_720x.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Strelitzia_reginae-111412.jpg/640px-Strelitzia_reginae-111412.jpg"
     },
     sunlight: ["full sun", "part sun"],
     watering: "Average",
@@ -612,7 +612,7 @@ const plantsDatabase = [
     common_name: "amaryllis",
     scientific_name: ["Hippeastrum"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Hippeastrum_sp._blossom_-_panoramio_%281%29.jpg/640px-Hippeastrum_sp._blossom_-_panoramio_%281%29.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Amaryllis_--_2024_--_9913.jpg/640px-Amaryllis_--_2024_--_9913.jpg"
     },
     sunlight: ["full sun", "part sun"],
     watering: "Average",
@@ -636,7 +636,7 @@ const plantsDatabase = [
     common_name: "chinese evergreen",
     scientific_name: ["Aglaonema"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Starr_070906-8498_Aglaonema_commutatum.jpg/640px-Starr_070906-8498_Aglaonema_commutatum.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Konya_Kelebekler_Vadisi_Aglaonema.jpg/640px-Konya_Kelebekler_Vadisi_Aglaonema.jpg"
     },
     sunlight: ["low light", "part shade"],
     watering: "Average",
@@ -660,7 +660,7 @@ const plantsDatabase = [
     common_name: "areca palm",
     scientific_name: ["Dypsis lutescens"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Chrysalidocarpus_lutescens_02.jpg/640px-Chrysalidocarpus_lutescens_02.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Dypsis_lutescens_%28Chrysalidocarpus_lutescens%29_-_Gora_Park_-_Hakone%2C_Kanagawa%2C_Japan_-_DSC08579.jpg/640px-Dypsis_lutescens_%28Chrysalidocarpus_lutescens%29_-_Gora_Park_-_Hakone%2C_Kanagawa%2C_Japan_-_DSC08579.jpg"
     },
     sunlight: ["part sun", "part shade"],
     watering: "Average",
@@ -674,7 +674,7 @@ const plantsDatabase = [
     common_name: "christmas cactus",
     scientific_name: ["Schlumbergera"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Schlumbergera_Gold_Charm.jpg/640px-Schlumbergera_Gold_Charm.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Schlumbergera_%28actm%29_05.jpg/640px-Schlumbergera_%28actm%29_05.jpg"
     },
     sunlight: ["part shade", "part sun"],
     watering: "Minimum",
@@ -688,7 +688,7 @@ const plantsDatabase = [
     common_name: "begonia",
     scientific_name: ["Begonia"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Begonia_%C3%97_tuberhybrida_Red_03.jpg/640px-Begonia_%C3%97_tuberhybrida_Red_03.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Begonia_grandis_%27claret_jug%27_01.jpg/640px-Begonia_grandis_%27claret_jug%27_01.jpg"
     },
     sunlight: ["part shade", "part sun"],
     watering: "Average",
@@ -726,7 +726,7 @@ const plantsDatabase = [
     common_name: "peony",
     scientific_name: ["Paeonia"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Paeonia_californica.jpg/640px-Paeonia_californica.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Paeonia_suffruticosa_Yatsuka_JdP.jpg/640px-Paeonia_suffruticosa_Yatsuka_JdP.jpg"
     },
     sunlight: ["full sun", "part sun"],
     watering: "Average",
@@ -750,7 +750,7 @@ const plantsDatabase = [
     common_name: "daisy",
     scientific_name: ["Bellis perennis", "Leucanthemum"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Leucanthemum_vulgare_%27Filigran%27_Flower_2200px.jpg/640px-Leucanthemum_vulgare_%27Filigran%27_Flower_2200px.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Leucanthemum_%27Alaska%27_Locatie_De_Kruidhof.JPG/640px-Leucanthemum_%27Alaska%27_Locatie_De_Kruidhof.JPG"
     },
     sunlight: ["full sun", "part sun"],
     watering: "Average",
@@ -765,7 +765,7 @@ const plantsDatabase = [
     common_name: "fern",
     scientific_name: ["Various fern species"],
     default_image: {
-      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Athyrium_filix-femina_01.jpg/640px-Athyrium_filix-femina_01.jpg"
+      thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Oban_Dunstaffnage_Castle_Fern_next_to_the_chapel.jpg/640px-Oban_Dunstaffnage_Castle_Fern_next_to_the_chapel.jpg"
     },
     sunlight: ["part shade", "part sun"],
     watering: "Average to Frequent",
