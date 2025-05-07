@@ -9,7 +9,7 @@ import Register from './components/auth/register';
 import Login from './components/auth/login';
 import Profile from './components/user/Profile';
 import MyPlants from './components/plants/MyPlants';
-import WateringLegend from './legends/WateringLegend';
+import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
 
 // Original App components (maintaining your existing functionality)
@@ -32,6 +32,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route 
                 path="/profile" 
                 element={

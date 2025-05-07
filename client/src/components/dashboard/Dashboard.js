@@ -1,32 +1,30 @@
+// src/components/Dashboard.js
 import React, { useContext, useEffect } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../auth/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
-  const { user, loading, loadUser } = useContext(AuthContext);
-
+  const { isAuthenticated, user, loading } = useContext(AuthContext);
+  const navigate = useNavigate();
+  
   useEffect(() => {
-    loadUser();
-  }, []);
-
-  return loading || !user ? (
-    <div className="loader">Loading...</div>
-  ) : (
-    <div className="dashboard">
+    if (!loading && !isAuthenticated) {
+      navigate('/login');
+    }
+  }, [isAuthenticated, loading, navigate]);
+  
+  if (loading || !user) {
+    return <div className="loading">Loading...</div>;
+  }
+  
+  return (
+    <div className="dashboard-container">
       <h2>Dashboard</h2>
-      <p>Welcome {user.name}</p>
+      <p>Welcome {user?.name}!</p>
       <div className="dashboard-content">
-        <h3>Your Profile</h3>
-        <div className="profile-info">
-          <p><strong>Name:</strong> {user.name}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>Account created:</strong> {new Date(user.date).toLocaleDateString()}</p>
-        </div>
-        {/* Add your plant-related content here */}
-        <div className="plants-section">
-          <h3>Your Plants</h3>
-          <p>You don't have any plants yet. Add your first plant to get started!</p>
-          <button className="btn btn-success">Add Plant</button>
-        </div>
+        <h3>Your Plant Collection</h3>
+        <p>You haven't added any plants to your collection yet.</p>
+        <button className="btn">Add Plants</button>
       </div>
     </div>
   );

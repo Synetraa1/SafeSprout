@@ -56,11 +56,13 @@ const User = mongoose.model('User', UserSchema);
 // Register Route
 app.post('/api/register', async (req, res) => {
   const { name, email, password } = req.body;
+  console.log('Registration attempt with:', { name, email });
 
   try {
     // Check if user exists
     let user = await User.findOne({ email });
     if (user) {
+      console.log('User already exists with this email');
       return res.status(400).json({ msg: 'User already exists' });
     }
 
@@ -72,11 +74,14 @@ app.post('/api/register', async (req, res) => {
     });
 
     // Hash password
+    console.log('Hashing password...');
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
 
     // Save user to database
+    console.log('Saving user to database...');
     await user.save();
+    console.log('User saved successfully');
 
     // Create JWT payload
     const payload = {
@@ -86,18 +91,23 @@ app.post('/api/register', async (req, res) => {
     };
 
     // Sign token
+    console.log('Signing JWT token...');
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
       { expiresIn: '1h' },
       (err, token) => {
-        if (err) throw err;
+        if (err) {
+          console.error('JWT Error:', err);
+          return res.status(500).json({ msg: 'Error generating token' });
+        }
+        console.log('Registration successful');
         res.json({ token });
       }
     );
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
+    console.error('Registration error details:', err);
+    res.status(500).json({ msg: 'Server error', error: err.message });
   }
 });
 

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+// src/components/auth/Register.js
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { AuthContext } from '../auth/AuthContext';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -9,44 +10,48 @@ const Register = () => {
     password: '',
     password2: ''
   });
-  const [error, setError] = useState('');
+  const [localError, setLocalError] = useState('');
   const navigate = useNavigate();
-
+  
+  const { isAuthenticated, error, register, clearError } = useContext(AuthContext);
+  
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard');
+    }
+    
+    // Clear any previous errors when component loads
+    clearError();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, navigate]);
+  
   const { name, email, password, password2 } = formData;
-
+  
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  
   const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
-      setError('Passwords do not match');
-      return;
-    }
-
-    try {
-      const res = await axios.post('http://localhost:5000/api/register', {
+      setLocalError('Passwords do not match');
+    } else {
+      setLocalError('');
+      register({
         name,
         email,
         password
       });
-      
-      // Save token to localStorage
-      localStorage.setItem('token', res.data.token);
-      
-      // Redirect to dashboard
-      navigate('/dashboard');
-    } catch (err) {
-      setError(err.response.data.msg || 'Registration failed');
     }
   };
-
+  
   return (
     <div className="auth-container">
       <h2>Sign Up</h2>
       <p>Create your SafeSprout account</p>
-      {error && <div className="alert alert-danger">{error}</div>}
+      {(localError || error) && (
+        <div className="alert alert-danger">{localError || error}</div>
+      )}
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>

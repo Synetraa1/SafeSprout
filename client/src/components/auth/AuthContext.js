@@ -1,3 +1,4 @@
+// src/context/AuthContext.js
 import React, { createContext, useReducer, useEffect } from 'react';
 import axios from 'axios';
 
@@ -59,18 +60,27 @@ const authReducer = (state, action) => {
 // Provider component
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
-
+  
+  // Set Auth Token
+  const setAuthToken = token => {
+    if (token) {
+      axios.defaults.headers.common['x-auth-token'] = token;
+    } else {
+      delete axios.defaults.headers.common['x-auth-token'];
+    }
+  };
+  
   // Load user
   const loadUser = async () => {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     } else {
+      dispatch({ type: 'AUTH_ERROR' });
       return;
     }
-
+    
     try {
       const res = await axios.get('http://localhost:5000/api/user');
-
       dispatch({
         type: 'USER_LOADED',
         payload: res.data
@@ -80,63 +90,51 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Set Auth Token
-  const setAuthToken = token => {
-    if (token) {
-      axios.defaults.headers.common['x-auth-token'] = token;
-    } else {
-      delete axios.defaults.headers.common['x-auth-token'];
-    }
-  };
-
   useEffect(() => {
     loadUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  
   // Register user
   const register = async formData => {
     try {
       const res = await axios.post('http://localhost:5000/api/register', formData);
-
       dispatch({
         type: 'REGISTER_SUCCESS',
         payload: res.data
       });
-
       loadUser();
     } catch (err) {
       dispatch({
         type: 'REGISTER_FAIL',
-        payload: err.response.data.msg
+        payload: err.response?.data?.msg || 'Registration failed'
       });
     }
   };
-
+  
   // Login user
   const login = async formData => {
     try {
       const res = await axios.post('http://localhost:5000/api/login', formData);
-
       dispatch({
         type: 'LOGIN_SUCCESS',
         payload: res.data
       });
-
       loadUser();
     } catch (err) {
       dispatch({
         type: 'LOGIN_FAIL',
-        payload: err.response.data.msg
+        payload: err.response?.data?.msg || 'Login failed'
       });
     }
   };
-
+  
   // Logout
   const logout = () => dispatch({ type: 'LOGOUT' });
-
+  
   // Clear errors
   const clearError = () => dispatch({ type: 'CLEAR_ERROR' });
-
+  
   return (
     <AuthContext.Provider
       value={{

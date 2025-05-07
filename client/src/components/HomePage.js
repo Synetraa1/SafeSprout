@@ -52,8 +52,7 @@ const HomePage = () => {
     setError('');
     try {
       // Use the search endpoint from our local database API
-      const res = await axios.get(`/api/plants/search?query=${searchTerm}`);
-      setSearchResults(res.data.data || []);
+      const res = await axios.get(`/api/plants/search?query=${searchTerm}`);      setSearchResults(res.data.data || []);
     } catch (error) {
       console.error('Error searching plants:', error);
       setError('Error connecting to the API. Please check if the server is running.');

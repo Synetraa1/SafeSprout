@@ -1,40 +1,40 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+// src/components/auth/Login.js
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { AuthContext } from '../auth/AuthContext';
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
-  const [error, setError] = useState('');
+  
   const navigate = useNavigate();
-
+  const { login, error, isAuthenticated, clearError } = useContext(AuthContext);
+  
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard');
+    }
+    
+    // Clear any previous errors when component loads
+    clearError();
+  }, [isAuthenticated, navigate, clearError]);
+  
   const { email, password } = formData;
-
+  
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  
   const onSubmit = async e => {
     e.preventDefault();
-
-    try {
-      const res = await axios.post('http://localhost:5000/api/login', {
-        email,
-        password
-      });
-      
-      // Save token to localStorage
-      localStorage.setItem('token', res.data.token);
-      
-      // Redirect to dashboard
-      navigate('/dashboard');
-    } catch (err) {
-      setError(err.response.data.msg || 'Login failed');
-    }
+    login({
+      email,
+      password
+    });
   };
-
+  
   return (
     <div className="auth-container">
       <h2>Sign In</h2>
