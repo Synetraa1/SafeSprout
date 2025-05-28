@@ -1,4 +1,3 @@
-
 .plant-card {
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -327,4 +326,31 @@
 
 .home-header p {
   color: #666;
+}
+
+/* Notification Center Styles */
+.notification-center {
+  background: #fffbe6;
+  border: 1px solid #ffe58f;
+  color: #ad8b00;
+  padding: 1em 1.5em;
+  margin: 1em auto 1.5em auto;
+  border-radius: 8px;
+  max-width: 500px;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.08);
+  font-size: 1rem;
+}
+
+.notification-center h4 {
+  margin-top: 0;
+  font-size: 1.1em;
+}
+
+.notification-center ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.notification-center li {
+  margin-bottom: 0.5em;
 }

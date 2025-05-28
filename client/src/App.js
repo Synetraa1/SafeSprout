@@ -11,6 +11,7 @@ import Profile from './components/user/Profile';
 import MyPlants from './components/plants/MyPlants';
 import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
+import NotificationCenter from './plants/NotificationCenter';
 
 // Original App components (maintaining your existing functionality)
 import HomePage from './components/HomePage'; // You'll need to create this
@@ -27,6 +28,7 @@ function App() {
       <Router>
         <div className="App">
           <Navbar />
+          <NotificationCenter />
           <div className="container">
             <Routes>
               <Route path="/" element={<HomePage />} />
